@@ -16,7 +16,7 @@ module.exports = (on, config) => {
   require('cypress-watch-and-reload/plugins')(on, config)
 
   // https://github.com/cypress-io/cypress-grep
-  require('cypress-grep/src/plugin')(on, config)
+  // require('cypress-grep/src/plugin')(on, config)
 
   on('task', {
     getNumber() {

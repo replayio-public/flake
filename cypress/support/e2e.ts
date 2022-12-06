@@ -15,7 +15,7 @@
 
 // https://github.com/cypress-io/cypress-grep
 // @ts-ignore
-require('cypress-grep')()
+// require('cypress-grep')()
 
 // @ts-ignore
 require('cypress-watch-and-reload/support')
