@@ -35,9 +35,6 @@ jobs:
           start: npm start
         env:
           RECORD_REPLAY_TEST_METRICS: 1
-          RECORD_REPLAY_WEBHOOK_URL: ${{ secrets.RECORD_REPLAY_WEBHOOK_URL }}
-          RECORD_ALL_CONTENT: 1
-          RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
           RECORD_REPLAY_METADATA_TEST_RUN_TITLE: "help i'm trapped in a test run title making factory"
           CYPRESS_NO_COMMAND_LOG: 1
       - name: Cypress run 2
@@ -51,9 +48,6 @@ jobs:
           start: npm start
         env:
           RECORD_REPLAY_TEST_METRICS: 1
-          RECORD_REPLAY_WEBHOOK_URL: ${{ secrets.RECORD_REPLAY_WEBHOOK_URL }}
-          RECORD_ALL_CONTENT: 1
-          RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
           RECORD_REPLAY_METADATA_TEST_RUN_TITLE: "help i'm trapped in a test run title making factory"
           CYPRESS_NO_COMMAND_LOG: 1
       - name: Cypress run 3
@@ -67,9 +61,6 @@ jobs:
           start: npm start
         env:
           RECORD_REPLAY_TEST_METRICS: 1
-          RECORD_REPLAY_WEBHOOK_URL: ${{ secrets.RECORD_REPLAY_WEBHOOK_URL }}
-          RECORD_ALL_CONTENT: 1
-          RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
           RECORD_REPLAY_METADATA_TEST_RUN_TITLE: "help i'm trapped in a test run title making factory"
           CYPRESS_NO_COMMAND_LOG: 1
       - name: Set upload start

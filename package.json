@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "test:replay": "RECORD_ALL_CONTENT=1 RECORD_REPLAY_METADATA_FILE=$(mktemp) cypress run --browser 'Replay Chromium'",
+    "test:replay": "cypress run --browser 'Replay Chromium'",
     "start": "http-server -p 8888 -c-1",
     "start-quiet": "http-server -p 8888 -c-1 --silent",
     "cypress": "cypress open",
@@ -36,8 +36,8 @@
     "http-server": "14.1.1"
   },
   "devDependencies": {
-    "@replayio/cypress": "^0.3.15",
-    "cypress": "10.6.0",
+    "@replayio/cypress": "^0.4.0",
+    "cypress": "11.2",
     "cypress-grep": "3.0.2",
     "cypress-repeat": "2.3.3",
     "cypress-watch-and-reload": "1.10.3",
