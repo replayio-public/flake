@@ -69,10 +69,11 @@ var app = app || {}
   }
 
   app.TodoModel.prototype.save = function (todoToSave, text) {
+    // Save the edited text to the matching todo item
     this.todos = this.todos.map(function (todo) {
       return todo !== todoToSave
         ? todo
-        : Utils.extend({}, todo, { title: text })
+        : { ...todo }
     })
 
     this.inform()

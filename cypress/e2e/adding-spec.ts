@@ -31,6 +31,7 @@ describe('TodoMVC', function () {
         allItems().eq(0).find('label').should('contain', TODO_ITEM_ONE)
         cy.get(NEW_TODO).type(TODO_ITEM_TWO).type('{enter}')
         allItems().eq(1).find('label').should('contain', TODO_ITEM_TWO)
+        allItems().should('have.length', 3)
       },
     )
 
