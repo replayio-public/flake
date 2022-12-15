@@ -17,22 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      # https://github.com/cypress-io/github-action
+      - uses: bahmutov/npm-install@v1
+      - name: Build and start
+        if: always()
+        run: npm start
       - name: Set test start
         if: always()
         id: recordStart
         run: echo "time=`date +%s`" >> $GITHUB_OUTPUT
-      - name: Cypress run
+      - name: Run tests
         if: always()
-        uses: cypress-io/github-action@v4
-        with:
-          browser: 'Replay Chromium'
-          # check the spec types
-          build: npm run lint
-          # start the application before running Cypress
-          start: npm start
+        run: npm run cy:run:replay
         env:
           RECORD_REPLAY_TEST_METRICS: 1
           RECORD_REPLAY_WEBHOOK_URL: ${{ secrets.RECORD_REPLAY_WEBHOOK_URL }}
@@ -61,18 +56,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      # https://github.com/cypress-io/github-action
-      - name: Cypress run
+      - uses: bahmutov/npm-install@v1
+      - name: Build and start
         if: always()
-        uses: cypress-io/github-action@v4
-        with:
-          browser: 'Replay Chromium'
-          # check the spec types
-          build: npm run lint
-          # start the application before running Cypress
-          start: npm start
+        run: npm start
+      - name: Run tests
+        if: always()
+        run: npm run cy:run:replay
         env:
           RECORD_REPLAY_TEST_METRICS: 1
           RECORD_REPLAY_WEBHOOK_URL: ${{ secrets.RECORD_REPLAY_WEBHOOK_URL }}
@@ -87,21 +77,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      # https://github.com/cypress-io/github-action
+      - uses: bahmutov/npm-install@v1
+      - name: Build and start
+        if: always()
+        run: npm start
       - name: Set test start
         if: always()
         id: start
         run: echo "time=`date +%s`" >> $GITHUB_OUTPUT
-      - name: Cypress run
+      - name: Run tests
         if: always()
-        uses: cypress-io/github-action@v4
-        with:
-          # check the spec types
-          build: npm run lint
-          # start the application before running Cypress
-          start: npm start
+        run: npm run cy:run
       - name: Set duration in output
         if: always()
         id: end
@@ -117,6 +103,8 @@ jobs:
           echo "Record Duration: ${{ needs.record.outputs.recordDuration }}"
           echo "Upload Duration: ${{ needs.record.outputs.uploadDuration }}"
       - name: Fetch API Data 📦
+        # Don't upload metrics for pull requests, so our stats are clean
+        if: ${{ github.ref_name == 'main' }}
         uses: JamesIves/fetch-api-data-action@v2
         with:
           endpoint: "https://telemetry.replay.io"
