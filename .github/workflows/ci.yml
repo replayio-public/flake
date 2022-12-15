@@ -2,6 +2,7 @@ name: ci
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   PROJECT_NAME: flake
+  RECORD_REPLAY_CHROMIUM_DOWNLOAD_FILE: linux-chromium-20221216-af43d5e88e01-aeb07da2b3e5.tar.xz
 on: 
   schedule:
     - cron: '0 0 * * *'
