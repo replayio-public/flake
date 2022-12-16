@@ -4,7 +4,7 @@
   "description": "Example Cypress tests going from page objects to app actions",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run",
+    "test": "cypress run --reporter=xunit --reporter-options output=/tmp/cypress.xml",
     "test:replay-gecko": "RECORD_ALL_CONTENT=1 RECORD_REPLAY_METADATA_FILE=$(mktemp) cypress run --browser 'Replay Firefox'",
     "test:replay": "RECORD_ALL_CONTENT=1 RECORD_REPLAY_METADATA_FILE=$(mktemp) cypress run --browser 'Replay Chromium'",
     "start": "http-server -p 8888 -c-1",
