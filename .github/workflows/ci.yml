@@ -2,7 +2,7 @@ name: ci
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   PROJECT_NAME: flake
-on: 
+on:
   schedule:
     - cron: '0 0 * * *'
   push:
@@ -29,6 +29,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           browser: 'Replay Chromium'
+          command: cypress run --reporter=xunit ...
           # check the spec types
           build: npm run lint
           # start the application before running Cypress
@@ -53,8 +54,8 @@ jobs:
       - name: Set duration in output
         id: end
         if: always()
-        run: | 
-          echo "recordDuration=$((${{ steps.uploadStart.outputs.time }} - ${{ steps.recordStart.outputs.time }}))" >> $GITHUB_OUTPUT
+        run: |
+          echo "recordDuration=$(cat ~/cypress.xml | npx xml2json | jq -r '.testsuite.time')" >> $GITHUB_OUTPUT
           echo "uploadDuration=$((`date +%s` - ${{ steps.uploadStart.outputs.time }}))" >> $GITHUB_OUTPUT
   no-record:
     runs-on: ubuntu-20.04
@@ -68,6 +69,7 @@ jobs:
         if: always()
         uses: cypress-io/github-action@v4
         with:
+          command: ...
           browser: 'Replay Chromium'
           # check the spec types
           build: npm run lint
@@ -83,7 +85,7 @@ jobs:
   original:
     runs-on: ubuntu-20.04
     outputs:
-     duration: ${{steps.end.outputs.duration}}
+      duration: ${{steps.end.outputs.duration}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -119,5 +121,5 @@ jobs:
       - name: Fetch API Data 📦
         uses: JamesIves/fetch-api-data-action@v2
         with:
-          endpoint: "https://telemetry.replay.io"
+          endpoint: 'https://telemetry.replay.io'
           configuration: '{ "method": "POST", "body": {"event": "Webhook", "source": "metrics", "name": "action-finished", "project": "flake", "originalDuration": "${{ needs.original.outputs.duration }}", "recordDuration": "${{ needs.record.outputs.recordDuration }}", "uploadDuration": "${{ needs.record.outputs.uploadDuration }}"} }'
