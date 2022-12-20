@@ -35,7 +35,6 @@ jobs:
           RECORD_ALL_CONTENT: 1
           RECORD_REPLAY_METADATA_FILE: /tmp/replay-metadata
           RECORD_REPLAY_METADATA_TEST_RUN_TITLE: "help i'm trapped in a test run title making factory"
-          CYPRESS_NO_COMMAND_LOG: 1
       - name: Parse test run duration
         id: set_var
         if: always()
