@@ -2,6 +2,7 @@ name: ci
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   PROJECT_NAME: flake
+  RECORD_REPLAY_CRASH_AT_WARNING: 1
 on: 
   schedule:
     - cron: '0 * * * *'
