@@ -50,11 +50,9 @@ jobs:
         run: npm i -g @replayio/replay@0.10.9-alpha.0
       - name: Upload replays ▶️
         if: ${{ always() }}
-        uses: replayio/action-upload@v0.4.6
-        with:
-          cli-version: 0.10.9-alpha.0
-          api-key: rwk_3gdLWqm8nrWA7jbPG8aiADVQ7moc0PYGdAEdnKAfzbM
-          public: true
+        run: |
+          replay metadata --init --keys source --warn
+          replay upload-all --api-key rwk_3gdLWqm8nrWA7jbPG8aiADVQ7moc0PYGdAEdnKAfzbM
       - name: Set duration in output
         id: end
         if: always()
