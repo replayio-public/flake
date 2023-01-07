@@ -45,9 +45,12 @@ jobs:
         if: always()
         id: uploadStart
         run: echo "time=`date +%s`" >> $GITHUB_OUTPUT
+      - name: Install CLI
+        if: always()
+        run: npm i -g @replayio/replay@0.10.9-alpha.0
       - name: Upload replays ▶️
         if: ${{ always() }}
-        uses: replayio/action-upload@v0.4.3
+        uses: replayio/action-upload@v0.4.6
         with:
           cli-version: 0.10.9-alpha.0
           api-key: rwk_3gdLWqm8nrWA7jbPG8aiADVQ7moc0PYGdAEdnKAfzbM
