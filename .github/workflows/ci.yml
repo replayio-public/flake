@@ -49,6 +49,7 @@ jobs:
         if: ${{ always() }}
         uses: replayio/action-upload@v0.4.3
         with:
+          cli-version: 0.10.9-alpha.0
           api-key: rwk_3gdLWqm8nrWA7jbPG8aiADVQ7moc0PYGdAEdnKAfzbM
           public: true
       - name: Set duration in output
