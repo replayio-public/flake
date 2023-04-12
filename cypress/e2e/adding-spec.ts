@@ -9,7 +9,13 @@ import {
 
 describe('TodoMVC', function () {
   before(() => {
-    expect(123).to.equal(123);
+    let title: string
+    cy.visit('/')
+    cy.title().then((t) => {
+      title = t
+    })
+    cy.get('.new-todo').type(TODO_ITEM_ONE).type('{enter}')
+    allItems().eq(0).find('label').should('contain', TODO_ITEM_ONE)
   });
 
   beforeEach(function () {
