@@ -8,6 +8,10 @@ import {
 } from './utils'
 
 describe('TodoMVC', function () {
+  before(() => {
+    expect(123).to.equal(123);
+  });
+
   beforeEach(function () {
     let title: string
     cy.visit('/')
