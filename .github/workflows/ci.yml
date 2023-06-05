@@ -14,7 +14,6 @@ on:
         description: Custom Firefox Runtime
 
 env:
-  DEBUG: "replay:*"
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   PROJECT_NAME: flake
   RECORD_REPLAY_FIREFOX_DOWNLOAD_FILE: ${{ github.event.inputs.firefox-runtime }}
