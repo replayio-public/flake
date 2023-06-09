@@ -18,10 +18,10 @@ export default defineConfig({
       cypressReplay.default(on, config)
 
       on('after:run', (afterRun: any) => {
-        const data = JSON.stringify(afterRun.totalDuration);
-        const filename = "duration.json"
-        fs.writeFileSync(filename, data);
-        console.log('cypress-json-results: wrote results to %s', filename);
+        const data = JSON.stringify(afterRun.totalDuration)
+        const filename = 'duration.json'
+        fs.writeFileSync(filename, data)
+        console.log('cypress-json-results: wrote results to %s', filename)
       })
 
       return require('./cypress/plugins/index.js')(on, config)
