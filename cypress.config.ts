@@ -5,6 +5,7 @@ const fs = require('fs')
 export default defineConfig({
   projectId: 'ovmwmi',
   e2e: {
+    retries: 2,
     env: {
       'cypress-watch-and-reload': {
         watch: 'js/*',

@@ -111,5 +111,15 @@ describe('TodoMVC', function () {
       addDefaultTodos()
       cy.get('@inform').should('have.been.calledOnce')
     })
+    it('calls inform', () => {
+      cy.window()
+        .its('model')
+        .should('be.an', 'object')
+        .then((model) => {
+          cy.spy(model, 'inform').as('inform')
+        })
+      addDefaultTodos()
+      cy.get('@inform').should('have.been.calledOnce')
+    })
   })
 })
