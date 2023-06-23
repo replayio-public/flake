@@ -7,7 +7,22 @@ import {
   TODO_ITEM_TWO,
 } from './utils'
 
+before(() => {
+  cy.visit('/?beforeAll-Outer')
+})
+
+after(() => {
+  cy.visit('/?afterAll-Outer')
+})
+
 describe('TodoMVC', function () {
+  before(() => {
+    cy.visit('/?beforeAll-TodoMVC')
+  })
+
+  after(() => {
+    cy.visit('/?afterAll-TodoMVC')
+  })
   beforeEach(function () {
     let title: string
     cy.visit('/')
@@ -17,6 +32,13 @@ describe('TodoMVC', function () {
   })
 
   context('New Todo', { tags: '@adding' }, function () {
+    before(() => {
+      cy.visit('/?beforeAll-New Todo')
+    })
+
+    after(() => {
+      cy.visit('/?afterAll-New Todo')
+    })
     // These tests confirm that add new Todo items works.
     // All tests go through the DOM and events just like a real user would.
 
@@ -96,7 +118,7 @@ describe('TodoMVC', function () {
     })
 
     it('should fail on this test', function () {
-      cy.contains("Sorry, something went wrong").should('exist');
+      cy.contains('Sorry, something went wrong').should('exist')
     })
   })
 
