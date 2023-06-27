@@ -58,7 +58,7 @@ jobs:
         run: echo "time=`date +%s`" >> $GITHUB_OUTPUT
       - name: Upload replays ▶️
         if: ${{ always() }}
-        uses: replayio/action-upload@v0.4.7
+        uses: replayio/action-upload@ryan/scs-1203-the-gh-summary-view-should-show-whether-the-replay-passed-or
         with:
           api-key: rwk_3gdLWqm8nrWA7jbPG8aiADVQ7moc0PYGdAEdnKAfzbM
           public: true
