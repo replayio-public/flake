@@ -38,11 +38,11 @@ jobs:
         if: always()
         uses: cypress-io/github-action@v4
         with:
-          command: npm ls && npx -y --ddd @replayio/cypress@1.0.5 run --mode ${{ inputs.mode || 'record-on-retry' }} --browser replay-chromium --timeout 30000
+          command: npx -y --ddd @replayio/cypress@1.0.5 run --mode ${{ inputs.mode || 'record-on-retry' }} --browser replay-chromium --timeout 30000
           # check the spec types
           build: npm run lint
           # start the application before running Cypress
-          start: npm start
+          start: npm ls, npm start
       - name: Upload replays ▶️
         if: ${{ always() }}
         uses: replayio/action-upload@v0.4.7
