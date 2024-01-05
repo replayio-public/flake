@@ -2,6 +2,8 @@ import { defineConfig } from 'cypress'
 const cypressReplay = require('@replayio/cypress')
 const fs = require('fs')
 
+const convertStringToInt = (string) => string.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
+
 export default defineConfig({
   projectId: 'ovmwmi',
   e2e: {
@@ -24,6 +26,10 @@ export default defineConfig({
         upload: true,
         apiKey: process.env.REPLAY_API_KEY,
         initMetadataKeys: ['source'],
+        filter: r =>
+          r.status === "crashed"
+          || r.metadata.test.result === "failed"
+          || convertStringToInt(r.metadata.test.run.id) % 2 == 1,
       })
 
       on('after:run', (afterRun: any) => {
