@@ -26,10 +26,14 @@ export default defineConfig({
         upload: true,
         apiKey: process.env.REPLAY_API_KEY,
         initMetadataKeys: ['source'],
-        filter: r =>
-          r.status === "crashed"
-          || r.metadata.test.result === "failed"
-          || convertStringToInt(r.metadata.test.run.id) % 2 == 1,
+        filter: r => {
+          const hasCrashed = r.status === "crashed";
+          const hasFailed = r.metadata.test.result === "failed"
+          const randomlyUploadAll = convertStringToInt(r.metadata.test.run.id) % 2 == 1;
+
+          console.log('upload replay ::', { hasCrashed, hasFailed, randomlyUploadAll })
+          return hasCrashed || hasFailed || randomlyUploadAll
+        },
       })
 
       on('after:run', (afterRun: any) => {
