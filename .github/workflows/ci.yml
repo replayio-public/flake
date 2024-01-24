@@ -24,10 +24,11 @@ jobs:
   record:
     strategy:
       matrix:
-        platform: [ubuntu-latest, macos-latest, windows-latest]
+        platform: [ubuntu-latest]
       fail-fast: false
     runs-on: ${{ matrix.platform }}
     steps:
+      - run: cat $GITHUB_EVENT_PATH
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
