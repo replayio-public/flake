@@ -28,6 +28,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.platform }}
     steps:
+      - run: echo $GITHUB_SHA
       - run: cat $GITHUB_EVENT_PATH
       - name: Checkout
         uses: actions/checkout@v3
