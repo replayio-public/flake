@@ -18,6 +18,7 @@ env:
   PROJECT_NAME: flake
   RECORD_REPLAY_FIREFOX_DOWNLOAD_FILE: ${{ github.event.inputs.firefox-runtime }}
   RECORD_REPLAY_CHROMIUM_DOWNLOAD_FILE: ${{ github.event.inputs.chromium-runtime }}
+  DEBUG: replay:cli*
 
 jobs:
   record:
