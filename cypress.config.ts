@@ -28,11 +28,21 @@ export default defineConfig({
         initMetadataKeys: ['source'],
         filter: r => {
           const hasCrashed = r.status === "crashed";
-          const hasFailed = r.metadata.test.result === "failed"
-          const randomlyUploadAll = convertStringToInt(r.metadata.test.run.id) % 2 == 1;
+          const hasFailed = r.metadata.test?.result === "failed";
+          const randomlyUploadAll =
+           r.metadata.source.branch == "master" 
+           && convertStringToInt(r.metadata.test.run.id) % 10 === 1;
 
-          console.log('upload replay ::', { hasCrashed, hasFailed, randomlyUploadAll })
-          return hasCrashed || hasFailed || randomlyUploadAll
+          console.log("uploading replay", {
+            hasCrashed,
+            hasFailed,
+            randomlyUploadAll,
+            branch: r.metadata.source.branch,
+            result: r.metadata.test?.result,
+            status: r.status,
+            runId: r.metadata.test.run.id
+          });
+          return hasCrashed || hasFailed || randomlyUploadAll;
         },
       })
 
