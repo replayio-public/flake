@@ -33,7 +33,8 @@ export default defineConfig({
            r.metadata.source.branch == "master" 
            && convertStringToInt(r.metadata.test.run.id) % 10 === 1;
 
-          console.log("uploading replay", {
+          console.log("should upload replay", {
+            shouldUpload: hasCrashed || hasFailed || randomlyUploadAll,
             hasCrashed,
             hasFailed,
             randomlyUploadAll,
